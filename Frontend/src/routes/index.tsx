@@ -1,11 +1,13 @@
-import React from 'react'
+import { createFileRoute } from '@tanstack/react-router'
 
-const index = () => {
+export const Route = createFileRoute('/')({
+  component: Index,
+})
+
+function Index() {
   return (
-    <div>
-      
+    <div className="p-2">
+      <h3>Welcome Home!</h3>
     </div>
   )
 }
-
-export default index
