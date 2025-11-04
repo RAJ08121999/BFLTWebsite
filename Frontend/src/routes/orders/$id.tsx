@@ -1,11 +1,9 @@
-import React from 'react'
+import { createFileRoute } from '@tanstack/react-router'
 
-const $id = () => {
-  return (
-    <div>
-      
-    </div>
-  )
+export const Route = createFileRoute('/orders/$id')({
+  component: RouteComponent,
+})
+
+function RouteComponent() {
+  return <div>Hello "/orders/$id"!</div>
 }
-
-export default $id

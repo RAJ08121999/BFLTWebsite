@@ -1,11 +1,9 @@
-import React from 'react'
+import { createFileRoute } from '@tanstack/react-router'
 
-const _layout = () => {
-  return (
-    <div>
-      
-    </div>
-  )
+export const Route = createFileRoute('/admin/_layout')({
+  component: RouteComponent,
+})
+
+function RouteComponent() {
+  return <div>Hello "/admin/_layout"!</div>
 }
-
-export default _layout

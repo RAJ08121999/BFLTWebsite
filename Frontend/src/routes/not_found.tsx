@@ -1,11 +1,9 @@
-import React from 'react'
+import { createFileRoute } from '@tanstack/react-router'
 
-const not_found = () => {
-  return (
-    <div>
-      
-    </div>
-  )
+export const Route = createFileRoute('/not_found')({
+  component: RouteComponent,
+})
+
+function RouteComponent() {
+  return <div>Hello "/not_found"!</div>
 }
-
-export default not_found

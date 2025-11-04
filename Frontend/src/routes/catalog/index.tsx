@@ -1,11 +1,9 @@
-import React from 'react'
+import { createFileRoute } from '@tanstack/react-router'
 
-const index = () => {
-  return (
-    <div>
-      
-    </div>
-  )
+export const Route = createFileRoute('/catalog/')({
+  component: RouteComponent,
+})
+
+function RouteComponent() {
+  return <div>Hello "/catalog/"!</div>
 }
-
-export default index
