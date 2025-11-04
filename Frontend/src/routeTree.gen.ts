@@ -12,6 +12,7 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as Not_foundRouteImport } from './routes/not_found'
+import { Route as LayoutRouteImport } from './routes/_layout'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OrdersIndexRouteImport } from './routes/orders/index'
 import { Route as OrderIndexRouteImport } from './routes/order/index'
@@ -38,6 +39,10 @@ const AdminRoute = AdminRouteImport.update({
 const Not_foundRoute = Not_foundRouteImport.update({
   id: '/not_found',
   path: '/not_found',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LayoutRoute = LayoutRouteImport.update({
+  id: '/_layout',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -153,6 +158,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_layout': typeof LayoutRoute
   '/not_found': typeof Not_foundRoute
   '/admin': typeof AdminRouteWithChildren
   '/admin/_layout': typeof AdminLayoutRoute
@@ -209,6 +215,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/_layout'
     | '/not_found'
     | '/admin'
     | '/admin/_layout'
@@ -229,6 +236,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LayoutRoute: typeof LayoutRoute
   Not_foundRoute: typeof Not_foundRoute
   AdminRoute: typeof AdminRouteWithChildren
   AuthLoginRoute: typeof AuthLoginRoute
@@ -254,6 +262,13 @@ declare module '@tanstack/react-router' {
       path: '/not_found'
       fullPath: '/not_found'
       preLoaderRoute: typeof Not_foundRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_layout': {
+      id: '/_layout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof LayoutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -388,6 +403,7 @@ const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LayoutRoute: LayoutRoute,
   Not_foundRoute: Not_foundRoute,
   AdminRoute: AdminRouteWithChildren,
   AuthLoginRoute: AuthLoginRoute,
